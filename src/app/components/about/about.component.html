@@ -1,26 +1,18 @@
-<!-- ID8: O aluno demonstrou a compreensão e a aplicação de técnicas de one-way data binding
-como Interpolation e Property Binding, para exibir e atualizar dados na interface gráfica
-de maneira unidirecional. -->
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-</head>
 <body class="background-page-conctact">
-
-<div class="container py-5 custom-container">
-  <div class="row">
-    <div class="col-md-6">
-      <img src="../../../assets/img/logo_grande.png" class="img-fluid" alt="Imagem da Empresa">
-    </div>
-    <div class="col-md-6 text-white">
-      <h2>{{ title_about }}</h2>
-      <div *ngFor="let paragraph of paragraphs">
-        <p [textContent]="paragraph"></p> 
+  <div class="container py-5 custom-container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="../../../assets/img/logo_grande.png" class="img-fluid" alt="Imagem da Empresa">
+      </div>
+      <div class="col-md-6 text-white">
+        <h2>{{ title_about }}</h2>
+        <div id="paragraphs">
+          <div *ngFor="let paragraph of allParagraphs">
+            <p>{{ paragraph }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 </body>
-</html>

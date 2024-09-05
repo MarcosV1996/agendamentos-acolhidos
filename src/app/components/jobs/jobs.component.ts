@@ -1,15 +1,11 @@
-/* ID10: O aluno implementou a técnica de two-way data binding para criar uma sincronização 
-bidirecional automática entre a interface e o modelo de dados, permitindo uma atualização 
-eficiente dos dados em ambos os lados. */
-
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-jobs',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './jobs.component.html',
   styleUrls: ['./jobs.component.css']
 })
@@ -25,6 +21,8 @@ export class JobsComponent {
   submissionError: string | null = null;
   submissionSuccess: boolean = false;
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   onFileSelected(event: Event) {
     const target = event.target as HTMLInputElement;
     if (target.files && target.files.length > 0) {
@@ -37,14 +35,13 @@ export class JobsComponent {
     this.submissionError = null;
     this.submissionSuccess = false;
 
-  
     console.log(this.formData);
 
-    const randomNumber = Math.random();
-    if (randomNumber > 0.5) {
-      this.submissionSuccess = true;
-    } else {
+    if (!this.formData.nome || !this.formData.email) {
       this.submissionError = 'Erro ao enviar o formulário. Tente novamente.';
+      this.cdr.detectChanges(); // Forçar atualização da interface
+    } else {
+      this.submissionSuccess = true;
     }
   }
 }

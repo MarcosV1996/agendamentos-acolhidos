@@ -19,20 +19,18 @@ export class AudioPlayerComponent implements OnInit {
 
   isPlaying: boolean = true; 
 
-  constructor() {}
-
   ngOnInit() {
     const audioElement: HTMLAudioElement = this.getAudioElement();
-    audioElement.volume = 1.0; 
+    audioElement.volume = 0.5; 
 
     audioElement.addEventListener('play', () => {
       this.isPlaying = true;
-      this.isPlayingChange.emit(true); // Emite o evento quando começa a tocar
+      this.isPlayingChange.emit(true); 
     });
 
     audioElement.addEventListener('pause', () => {
       this.isPlaying = false;
-      this.isPlayingChange.emit(false); // Emite o evento quando é pausado
+      this.isPlayingChange.emit(false); 
     });
   }
 

@@ -1,0 +1,95 @@
+
+.footer h4 {
+    color: #343a40; /* Cor do título */
+    margin-bottom: 20px; /* Espaçamento inferior do título */
+}
+
+.footer p,
+.footer a {
+    color: #6c757d; /* Cor do texto e links */
+    margin: 0; /* Remove margin */
+}
+
+/* Estilos para as redes sociais */
+.social-icons-container {
+    display: flex; /* Usa flexbox para alinhar os ícones */
+    justify-content: center; /* Centraliza os ícones horizontalmente */
+    align-items: center; /* Centraliza os ícones verticalmente */
+    gap: 5px; /* Espaçamento entre os ícones */
+    flex-wrap: wrap; /* Permite que os ícones quebrem linha em telas pequenas */
+    padding: 0;
+    margin: 0;
+    list-style: none; /* Remove estilo de lista */
+}
+
+.social-icon {
+    width: 30px; /* Tamanho dos ícones */
+    height: 30px;
+}
+
+/* Estilos para a localização */
+.map-container {
+    width: 100%; /* Garante que o mapa ocupe toda a largura da coluna */
+    max-width: 400px; /* Limita a largura máxima do mapa */
+    margin: 0 auto; /* Centraliza o mapa horizontalmente */
+    aspect-ratio: 16/9; /* Mantém a proporção do mapa */
+    border: 2px solid #ccc; /* Borda ao redor do mapa */
+    border-radius: 25px; /* Bordas arredondadas */
+    overflow: hidden; /* Esconde o excesso de conteúdo */
+}
+
+/* Estilos para o texto de direitos autorais */
+.footer p.mt-4 {
+    margin-top: 20px; /* Ajuste o espaçamento superior do texto */
+}
+
+/* Media query para telas menores */
+@media (max-width: 768px) {
+    .footer {
+        padding: 20px 0; /* Reduz o espaçamento interno em telas menores */
+    }
+
+    .col-md-4.mb-4 {
+        margin-bottom: 20px; /* Reduz o espaçamento inferior das colunas em telas menores */
+    }
+
+    .footer p.mt-4 {
+        margin-top: 10px; /* Reduz o espaçamento superior do texto em telas menores */
+    }
+
+    .map-container {
+        height: 200px; /* Altura fixa para o mapa em telas menores */
+        max-width: 100%; /* Remove a largura máxima para que o mapa ocupe toda a largura da coluna */
+    }
+}
+
+/* Media query para telas muito pequenas */
+@media (max-width: 350px) {
+    .footer {
+        padding: 10px 0; /* Reduz o espaçamento interno em telas muito pequenas */
+    }
+
+    .col-md-4.mb-4 {
+        margin-bottom: 10px; /* Reduz o espaçamento inferior das colunas em telas menores */
+        text-align: center; /* Centraliza o texto para melhor visualização */
+    }
+
+    .footer p.mt-4 {
+        margin-top: 5px; /* Reduz o espaçamento superior do texto em telas muito pequenas */
+        font-size: 14px; /* Reduz o tamanho da fonte */
+    }
+
+    .social-icons-container {
+        gap: 4px; /* Reduz o espaçamento entre os ícones */
+        row-gap: 4px; /* Reduz o espaçamento entre as linhas de ícones */
+    }
+
+    .social-icon {
+        width: 24px; /* Reduz ainda mais o tamanho dos ícones */
+        height: 24px;
+    }
+
+    .map-container {
+        height: 150px; /* Reduz a altura do mapa em telas muito pequenas */
+    }
+}

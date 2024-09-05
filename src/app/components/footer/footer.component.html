@@ -1,57 +1,38 @@
 <footer class="footer">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 mb-54"> <!-- Adicionei a classe mb-4 para adicionar espaço na parte inferior -->
+      <div class="col-md-4 mb-4">
         <h4>Contato</h4>
-        <p>Cidade: Guarapuava</p>
-        <p>Bairro: Conradinho</p>
-        <p>Endereço: Rua Jaime de Amaral De Pacheco</p>
-        <p>Telefone: (42)0000-0000</p>
+        <p>Cras: {{ '42999866399' | telefone }}</p>
+        <p>Doações: {{ '42998604730' | telefone }}</p>
+        <p>Grupo de oração: {{ '42996989025' | telefone }}</p>
+        <p>Apostólico: {{ '42989653241' | telefone }}</p>
       </div>
 
-      <div class="col-md-4 mb-4"> <!-- Adicionei a classe mb-4 para adicionar espaço na parte inferior -->
+      <div class="col-md-4 mb-4">
         <h4>Redes Sociais</h4>
         <ul class="list-unstyled social-icons-container">
-          <li>
-            <a href="[Link da rede social]">
-              <img
-                class="social-icon"
-                src="https://cdn-icons-png.freepik.com/256/5968/5968764.png"
-                alt="Facebook"
-              />
-            </a>
-          </li>
-          <li>
-            <a href="[Link da rede social]">
-              <img
-                class="social-icon"
-                src="https://cdn-icons-png.flaticon.com/256/1409/1409946.png"
-                alt="Twitter"
-              />
-            </a>
-          </li>
-          <li>
-            <a href="[Link da rede social]">
-              <img
-                class="social-icon"
-                src="https://cdn-icons-png.flaticon.com/256/3938/3938028.png"
-                alt="Instagram"
-              />
+          <li *ngFor="let redeSocial of redesSociais">
+            <a href="{{ redeSocial.link }}" [attr.aria-label]="redeSocial.nome">
+              <img class="social-icon" [src]="redeSocial.nome | socialIcon" [alt]="redeSocial.nome" /> 
             </a>
           </li>
         </ul>
       </div>
-      <div class="col-md-4 mb-4"> <!-- Adicionei a classe mb-4 para adicionar espaço na parte inferior -->
+
+      <div class="col-md-4 mb-4">
         <h4>Localização</h4>
-        <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 200px; border: 2px solid #ccc; border-radius: 25px; overflow: hidden;">
-          <iframe src="https://www.google.com/maps/embed?pb=!4v1713014015862!6m8!1m7!1sK-PJ-0XXfDrGAmxZ-qL60Q!2m2!1d-25.3518724527388!2d-51.49613653941223!3f166.10205021502938!4f-21.488128928436993!5f0.7820865974627469" width="600" height="450" style="border: 0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" frameborder="0" allowfullscreen="" style="border: 0; width: 100%; height: 100%"></iframe>
-        </div>
+        <p>
+          <a href="https://www.google.com/maps/..." target="_blank">
+            {{ 'Rua Jaime de Amaral De Pacheco, Conradinho, Guarapuava - PR' |uppercase }}
+          </a>
+        </p>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-12 text-center">
-        <p style="margin-top: 100px;">Direitos Reservados &copy; 2024 - Albergue Noturno</p>
+      <div class="col-12 text-center">
+      <p class="mt-4">Direitos Reservados &copy; {{ dataAtual | date:'yyyy' }} - Albergue Noturno</p>
       </div>
     </div>
   </div>

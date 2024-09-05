@@ -1,43 +1,22 @@
+<!-- ID8: O aluno demonstrou a compreensão e a aplicação de técnicas de one-way
+ data binding, como Interpolation e Property Binding, para exibir e atualizar 
+ dados na interface gráfica de maneira unidirecional. -->
 
 <body class="custom-body">
     <div class="container mx-auto mt-4 custom-background">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card custom-card">
-                    <i class="fas fa-user-nurse fa-5x"></i>
-                    <div class="card-body">
-                        <h5 class="card-title">Assistente Social</h5>
-                        <h6 class="card-subtitle mb-2 text-muted"></h6>
-                        <p class="card-text">Horário para atendimento 08:00 as 18:00 hrs.</p>
-                        <i class="fas fa-envelope"></i> Email: <a href="mailto:assistente.social&#64;albergue.com">assistente.social&#64;albergue.co</a><br>
-                        <i class="fas fa-phone"></i> Telefone: (42)1234-5678
-                    </div>
-                </div>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let contact of contacts">
+          <div class="card custom-card">
+            <i class="{{ contact.icone }}"></i>
+            <div class="card-body">
+              <h5 class="card-title">{{ contact.nome }}</h5>
+              <p class="card-text">{{ contact.horario }}</p>
+              <i class="fas fa-envelope"></i> Email: <a [href]="'mailto:' + contact.email">{{ contact.email }}</a><br>
+              <i class="fas fa-phone"></i> Telefone: {{ contact.telefone }}
             </div>
-            <div class="col-md-4">
-                <div class="card custom-card">
-                    <i class="fas fa-user-md fa-5x"></i>
-                    <div class="card-body">
-                        <h5 class="card-title">Psicólogo</h5>
-                        <h6 class="card-subtitle mb-2 text-muted"></h6>
-                        <p class="card-text">O psicólogo está disponível das 08:00 as 18:00 hrs.</p>
-                        <i class="fas fa-envelope"></i> Email: <a href="mailto:psicologo&#64;albergue.com">psicologo&#64;albergue.com</a><br>
-                        <i class="fas fa-phone"></i> Telefone: (42) 1234-5678
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card custom-card">
-                    <i class="fas fa-user-friends fa-5x"></i>
-                    <div class="card-body">
-                        <h5 class="card-title">Cuidadores</h5>
-                        <h6 class="card-subtitle mb-2 text-muted"></h6>
-                        <p class="card-text">Os cuidadores estão disponíveis 24 hrs.</p>
-                        <i class="fas fa-envelope"></i> Email: <a href="mailto:cuidadores&#64;albergue.com">cuidadores&#64;albergue.com</a><br>
-                        <i class="fas fa-phone"></i> Telefone:(42)1234-5678
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</body>
+  </body>
+  

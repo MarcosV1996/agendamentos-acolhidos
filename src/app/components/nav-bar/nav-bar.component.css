@@ -3,14 +3,26 @@
     font-weight: 900; /* Bold */
   }
 
+  .btn-secondary .fas.fa-user {
+    color: white; /* Define a cor do ícone como branco */
+}
 
+#dropdownMenu2 {
+  background-color: transparent; color: white;
 
+}
+.dropdown show{
+  background-color: transparent; color: white;
+
+}
 .navbar-nav {
   display: flex;     
   flex-wrap: nowrap; 
   overflow-x: auto;  
 }
-
+.btn-secondary i {
+  background-color: transparent !important; /* Remove o fundo cinza */
+}
 
 .nav-item {
   flex: 1;          
@@ -24,3 +36,6 @@
 }
 
 
+.navbar-nav {
+  position: relative; /* Permite que o dropdown seja posicionado corretamente */
+}
