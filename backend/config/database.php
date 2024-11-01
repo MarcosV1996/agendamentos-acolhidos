@@ -40,7 +40,9 @@ return [
             'busy_timeout' => null,
             'journal_mode' => null,
             'synchronous' => null,
+            'timeout' => 60,
         ],
+        
 
         'mysql' => [
             'driver' => 'mysql',
@@ -111,6 +113,8 @@ return [
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
+
+       
 
     ],
 

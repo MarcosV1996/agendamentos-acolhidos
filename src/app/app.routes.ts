@@ -9,6 +9,10 @@ import { JobsComponent } from './components/jobs/jobs.component';
 import { PrayerComponent } from './components/prayer/prayer.component';
 import { PartnershipsComponent } from './components/partnerships/partnerships.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { AppointmentsListComponent} from './components/appointments-list/appointments-list.component'; 
+import { AuthGuard } from './components/guard-routes-appointaments-list/auth.guard';
+import { EditListComponent } from './components/edit-list/edit-list.component';
+import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,4 +25,8 @@ export const routes: Routes = [
   { path: 'filter', component: FilterComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'appointments-list', component: AppointmentsListComponent, canActivate: [AuthGuard] },
+  { path: 'edit/:id', component: EditListComponent, canActivate: [AuthGuard] },
+  { path: 'user-registration', component: UserRegistrationComponent, canActivate: [AuthGuard] }
+
 ];

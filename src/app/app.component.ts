@@ -1,9 +1,10 @@
-// src/app/app.component.ts
+import { User } from './../../backend/vendor/laravel/breeze/stubs/inertia-react-ts/resources/js/types/index.d';
+import { UserRegistrationComponent } from './components/user-registration/user-registration.component';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgxMaskDirective } from 'ngx-mask';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -15,19 +16,25 @@ import { FooterComponent } from './components/footer/footer.component';
 import { JobsComponent } from './components/jobs/jobs.component';
 import { FormComponent } from './components/form/form.component';
 import { PartnershipsComponent } from './components/partnerships/partnerships.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AppointmentsListComponent } from './components/appointments-list/appointments-list.component';
+import { AuthGuard } from './components/guard-routes-appointaments-list/auth.guard';
+import { EditListComponent } from './components/edit-list/edit-list.component';
+import {  HttpHeaders } from '@angular/common/http';
 
-import { AuthGuard } from './components/guard-routes/auth.guard';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+   
+    ReactiveFormsModule,
     CommonModule,
     HttpClientModule,
     NgxMaskDirective,
     RouterModule,
     RouterOutlet,
-    LoginComponent,
+ /*    LoginComponent, */
     HomeComponent,
     FilterComponent,
     AboutComponent,
@@ -36,7 +43,8 @@ import { AuthGuard } from './components/guard-routes/auth.guard';
     FooterComponent,
     JobsComponent,
     FormComponent,
-    PartnershipsComponent
+    PartnershipsComponent,
+   
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
@@ -45,7 +53,7 @@ export class AppComponent {}
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutComponent, canActivate: [AuthGuard] },
   { path: 'contacts', component: ContactsComponent, canActivate: [AuthGuard] },
@@ -53,6 +61,10 @@ const appRoutes: Routes = [
   { path: 'form', component: FormComponent, canActivate: [AuthGuard] },
   { path: 'partnerships', component: PartnershipsComponent, canActivate: [AuthGuard] },
   { path: 'filter', component: FilterComponent, canActivate: [AuthGuard] },
+  { path: 'appointments-list', component: AppointmentsListComponent, canActivate: [AuthGuard] },
+  { path: 'edit/:id', component: EditListComponent, canActivate: [AuthGuard] },
+  { path: 'user-registration', component: UserRegistrationComponent, canActivate: [AuthGuard] }
+
 ];
 
 export const AppRoutingModule = RouterModule.forRoot(appRoutes);

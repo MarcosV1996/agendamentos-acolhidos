@@ -1,41 +1,55 @@
 .navbar-brand {
-    font-size: 25px; 
-    font-weight: 900; /* Bold */
-  }
+  font-size: 25px; 
+  font-weight: 900; /* Bold */
+}
 
-  .btn-secondary .fas.fa-user {
-    color: white; /* Define a cor do ícone como branco */
+.btn-secondary .fas.fa-user {
+  color: white; /* Define a cor do ícone como branco */
 }
 
 #dropdownMenu2 {
-  background-color: transparent; color: white;
+background-color: transparent; color: white;
 
 }
 .dropdown show{
-  background-color: transparent; color: white;
+background-color: transparent; color: white;
 
 }
 .navbar-nav {
-  display: flex;     
-  flex-wrap: nowrap; 
-  overflow-x: auto;  
+display: flex;     
+flex-wrap: nowrap; 
+overflow-x: auto;  
 }
 .btn-secondary i {
-  background-color: transparent !important; /* Remove o fundo cinza */
+background-color: transparent !important; /* Remove o fundo cinza */
 }
 
 .nav-item {
-  flex: 1;          
-  white-space: nowrap; 
+flex: 1;          
+white-space: nowrap; 
 }
 
 
 .nav-item a {
-  font-size: 14px;  
-  padding: 5px 10px; 
+font-size: 14px;  
+padding: 5px 10px; 
 }
 
 
 .navbar-nav {
-  position: relative; /* Permite que o dropdown seja posicionado corretamente */
+position: relative; /* Permite que o dropdown seja posicionado corretamente */
+}
+
+.user-dropdown {
+  border: none;        
+  outline: none;     
+  background-color: transparent; 
+  box-shadow: none;   
+}
+
+.user-dropdown:focus, 
+.user-dropdown:active {
+  outline: none;       
+  border: none;        
+  box-shadow: none;   
 }

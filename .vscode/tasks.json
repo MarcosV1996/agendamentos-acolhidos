@@ -37,6 +37,15 @@
           }
         }
       }
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "path": "backend/vendor/laravel/framework/src/Illuminate/Foundation/resources/exceptions/renderer",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: build - backend/vendor/laravel/framework/src/Illuminate/Foundation/resources/exceptions/renderer",
+      "detail": "vite build"
     }
   ]
 }

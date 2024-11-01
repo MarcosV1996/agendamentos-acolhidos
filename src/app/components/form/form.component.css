@@ -1,19 +1,67 @@
-body {
-  font-family: 'Roboto', sans-serif;
-  background: url('../../../assets/img/fundo6.jpg') no-repeat center center fixed;
-  background-size: cover; /* Garante que a imagem cubra toda a tela */
-  color: #333; 
-  padding-top: 129px; 
-  padding-bottom: 50px;
+
+
+.container-fluid {
+
+  padding-top: 115px; 
+}
+
+.agora {
+
+  text-decoration: none;
+}
+.tooltip {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  margin-top: 5px; /* Espaço entre o ícone e o tooltip */
+  z-index: 1000;
+  white-space: nowrap; /* Para evitar quebra de linha */
+}
+
+.info-icon {
+  position: relative; /* Para posicionar a tooltip em relação a este elemento */
+  cursor: pointer;
+  margin-left: 5px; /* Espaçamento do ícone */
+  color: #000000; /* Cor do ícone */
+}
+
+.tooltip-text {
+  visibility: hidden; /* Inicialmente invisível */
+  width: 250px; /* Largura da tooltip */
+  background-color: rgba(51, 51, 51, 0.8); /* Cor de fundo translúcida (preto com 80% de opacidade) */
+  color: #fff; /* Cor do texto */
+  text-align: center; /* Centraliza o texto */
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 5px; /* Espaçamento interno */
+  position: absolute; /* Posicionamento absoluto */
+  z-index: 1; /* Fica em cima de outros elementos */
+  bottom: 125%; /* Posiciona acima do ícone */
+  left: 50%; /* Centraliza em relação ao ícone */
+  margin-left: -125px; /* Ajusta para centralizar */
+  opacity: 0; /* Inicia invisível */
+  transition: opacity 0.3s; /* Transição suave */
+}
+
+.info-icon:hover .tooltip-text {
+  visibility: visible; /* Torna visível ao passar o mouse */
+  opacity: 1; /* Torna opaco */
+}
+
+
+.info-icon:hover .tooltip-text {
+  visibility: visible; 
+  opacity: 1;
 }
 
 .form-container {
-  background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra mais suave */
-  margin: 50px auto; /* Centraliza horizontalmente e adiciona margem superior */
-  max-width: 800px; /* Largura máxima do formulário */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+  margin: 50px auto;
+  max-width: 800px; 
   
 }
 
@@ -27,6 +75,7 @@ h2 {
 .form-group {
   margin-bottom: 15px;
   padding-top: 5px;
+  
 }
 
 label {
@@ -34,7 +83,7 @@ label {
 }
 
 .btn-custom {
-  background-color: #007bff; /* Cor primária do Bootstrap */
+  background-color: #007bff; 
   color: white;
   width: 100%;
 }
@@ -46,10 +95,148 @@ label {
 }
 
 .form-container {
-  /* ... outros estilos ... */
-  margin-bottom: 50px; /* Adicione a margem inferior desejada */
+  margin-bottom: 50px; 
 }
 
 .move-checkbox {
   margin-left: 20px;
+}
+
+body {
+  background-image: url('../../../assets/img/mao3.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-bottom: 50px;
+
+}
+
+.form-container {
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  
+}
+
+.btn-custom {
+  background-color: #007bff; 
+  color: #fff;
+  border: none;
+}
+
+.btn-custom:hover {
+  background-color: #0056b3;
+  background-image: url('../../../assets/img/mao3.jpg'); 
+}
+.modal-content-success {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.modal-content-error {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.success-icon {
+  color: #28a745;
+  font-size: 48px;
+  animation: checkmark-animation 0.6s ease-out;
+}
+
+.error-icon {
+  color: #dc3545;
+  font-size: 48px;
+  animation: xmark-animation 0.6s ease-out;
+}
+
+@keyframes checkmark-animation {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes xmark-animation {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.modal-content {
+  background-color: #d4edda; /* Fundo verde claro */
+  color: #155724;           /* Cor do texto verde escuro */
+  border-radius: 10px;       /* Bordas arredondadas */
+  border: none;              /* Remove bordas */
+}
+
+.modal-header, .modal-body, .modal-footer {
+  background-color: #d4edda; /* Mesma cor verde para todas as seções */
+  border: none;              /* Remove bordas entre as seções */
+}
+
+.close {
+  color: #000000;            /* Cor do botão de fechar (X) */
+}
+
+.btn-primary {
+  background-color: #155724;  /* Cor do botão 'Fechar' */
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0c3e23;  /* Cor ao passar o mouse */
+}
+.ng-invalid.ng-touched {
+  border-color: red;
+  
+}
+
+.info-icon {
+  position: relative; /* Para posicionar a tooltip em relação a este elemento */
+  cursor: pointer;
+  margin-left: 5px; /* Espaçamento do ícone */
+  color: #000000; /* Cor do ícone */
+}
+
+.tooltip-text {
+  visibility: hidden; /* Inicialmente invisível */
+  width: 250px; /* Largura da tooltip */
+  background-color: rgba(51, 51, 51, 0.8); /* Cor de fundo translúcida (preto com 80% de opacidade) */
+  color: #fff; /* Cor do texto */
+  text-align: center; /* Centraliza o texto */
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 5px; /* Espaçamento interno */
+  position: absolute; /* Posicionamento absoluto */
+  z-index: 1; /* Fica em cima de outros elementos */
+  bottom: 125%; /* Posiciona acima do ícone */
+  left: 50%; /* Centraliza em relação ao ícone */
+  margin-left: -125px; /* Ajusta para centralizar */
+  opacity: 0; /* Inicia invisível */
+  transition: opacity 0.3s; /* Transição suave */
+}
+
+.info-icon:hover .tooltip-text {
+  visibility: visible; /* Torna visível ao passar o mouse */
+  opacity: 1; /* Torna opaco */
+}
+
+.btn:hover, .btn:focus {
+  background: #09928b !important; /* Forçando azul escuro ao passar o mouse */
+  -webkit-background-clip: none !important;
+  -webkit-text-fill-color: #ffffff !important; /* Cor do texto branca */
+  border: none !important; /* Removendo a borda branca */
+  box-shadow: none !important; /* Removendo a sombra */
+  text-decoration: none !important; /* Sem sublinhado */
 }

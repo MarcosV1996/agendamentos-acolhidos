@@ -4,6 +4,25 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TestSessionController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::get('/csrf-token', function () {
+    return response()->json(['csrf_token' => csrf_token()]);
+});
+/* testar rota do banco de dados
+Route::get('/check-password', function () {
+    $user = User::where('username', 'admin')->first();
+    if (Hash::check('password123', $user->password)) {
+        return 'A senha está correta!';
+    } else {
+        return 'A senha está incorreta.';
+    }
+}); */
 
 // Obter o token CSRF para proteção de formulários
 Route::get('/csrf-token', function () {

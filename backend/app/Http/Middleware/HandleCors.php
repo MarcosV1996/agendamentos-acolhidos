@@ -4,6 +4,8 @@ namespace Fruitcake\Cors;
 
 use Illuminate\Http\Request;
 use Closure;
+namespace App\Http\Middleware;
+
 
 class HandleCors
 {

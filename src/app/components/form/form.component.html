@@ -1,89 +1,216 @@
 <body>
   <div class="container-fluid">
     <div class="form-container">
-      <h2 class="text-center">Agendamento</h2> 
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <h2 class="text-center">Agendamento</h2>
+
+      <!-- Botão para ler as regras novamente com ícone de interrogação -->
+      <div class="rules-container">
+        <button class="btn btn-link" (click)="openRulesModal(rulesContent)">
+          Ler as regras
+          <span class="info-icon">
+            <i class="fas fa-question-circle"></i>
+            <span class="tooltip-text">
+              Clique aqui para ler as regras e instruções importantes sobre a reserva.
+            </span>
+          </span>
+        </button>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit(content)">
         <div class="form-group row">
           <div class="col-md-6">
-            <label for="nome">Nome:</label>
-            <input type="text" class="form-control" id="nome" formControlName="name" placeholder="Digite seu nome">
+            <label for="name">Nome:</label>
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Digite seu nome" (input)="formatName('name')">
+            <div *ngIf="registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty || registerForm.get('name')?.touched)" class="text-danger">
+              Nome é obrigatório.
+            </div>
           </div>
           <div class="col-md-6">
-            <label for="Sobrenome">Sobrenome:</label>
-            <input type="text" class="form-control" id="Sobrenome" formControlName="last_name" placeholder="Digite seu sobrenome">
+            <label for="last_name">Sobrenome:</label>
+            <input type="text" class="form-control" id="last_name" formControlName="last_name" placeholder="Digite seu sobrenome" (input)="formatName('last_name')">
+            <div *ngIf="registerForm.get('last_name')?.invalid && (registerForm.get('last_name')?.dirty || registerForm.get('last_name')?.touched)" class="text-danger">
+              Sobrenome é obrigatório.
+            </div>
           </div>
         </div>
+
         <div class="form-group row">
           <div class="col-md-6">
-            <label for="cpf">Cpf:</label>
-            <input type="text" class="form-control" id="cpf" formControlName="cpf" mask="000.000.000-00"> 
+            <label for="cpf">CPF:</label>
+            <input type="text" class="form-control" id="cpf" formControlName="cpf" mask="000.000.000-00">
             <div *ngIf="registerForm.get('cpf')?.invalid && (registerForm.get('cpf')?.dirty || registerForm.get('cpf')?.touched)" class="text-danger">
               CPF inválido.
             </div>
-            <span class="info-icon" ngbTooltip="O CPF é necessário para identificação no albergue. Ele será utilizado para garantir que a reserva é feita para você.">
-              <i class="fas fa-question-circle"></i> </span>
+            <span class="info-icon">
+              <i class="fas fa-question-circle"></i>
+              <span class="tooltip-text">Precisamos do seu CPF para comprovar que a reserva é feita por você.</span>
+            </span>
           </div>
+          <div class="col-md-6">
+            <label for="birth_date">Data de nascimento:</label>
+            <input type="date" class="form-control" id="birth_date" formControlName="birth_date">
+            <div *ngIf="registerForm.get('birth_date')?.invalid && (registerForm.get('birth_date')?.dirty || registerForm.get('birth_date')?.touched)" class="text-danger">
+              Data de nascimento é obrigatória.
+            </div>
+          </div>
+        </div>
 
-          <div class="col-md-6">
-            <label for="nome_mae">Nome da mãe:</label>
-            <input type="text" class="form-control" id="nome_mae" formControlName="mother_name" placeholder="Digite o nome de sua mãe">
-            <span class="info-icon" ngbTooltip="O nome da mãe é necessário para identificação no albergue. Ele será utilizado para garantir que a reserva é feita para você.">
-              <i class="fas fa-question-circle"></i> </span>
-          </div>
-        </div>
+        <!-- Campo Nome da Mãe com ícone de interrogação -->
         <div class="form-group row">
           <div class="col-md-6">
-            <label for="data">Data de chegada:</label>
-            <input type="date" class="form-control" id="data" formControlName="date">
+            <label for="mother_name">
+              Nome da mãe:
+              <span class="info-icon">
+                <i class="fas fa-question-circle"></i>
+                <span class="tooltip-text">
+                  O nome da mãe é necessário para identificar corretamente a reserva e evitar duplicidades.
+                </span>
+              </span>
+            </label>
+            <input type="text" class="form-control" id="mother_name" formControlName="mother_name" placeholder="Digite o nome de sua mãe">
+            <div *ngIf="registerForm.get('mother_name')?.invalid && (registerForm.get('mother_name')?.dirty || registerForm.get('mother_name')?.touched)" class="text-danger">
+              Nome da mãe é obrigatório.
+            </div>
           </div>
           <div class="col-md-6">
-            <label for="hora">Hora de chegada:</label>
-            <input type="time" class="form-control" id="hora" formControlName="time">
+            <label for="gender">Gênero:</label>
+            <select class="form-control" id="gender" formControlName="gender">
+              <option value="">Selecione um gênero</option>
+              <option value="male">Masculino</option>
+              <option value="female">Feminino</option>
+              <option value="other">Outro</option>
+            </select>
+            <div *ngIf="registerForm.get('gender')?.invalid && (registerForm.get('gender')?.dirty || registerForm.get('gender')?.touched)" class="text-danger">
+              Gênero é obrigatório.
+            </div>
           </div>
         </div>
+
         <div class="form-group row">
           <div class="col-md-6">
-            
-            <label for="estado">Estado:</label>
-            <select class="form-control" id="estado" formControlName="state" (change)="onStateChange($event)">
+            <label for="arrival_date">Data de Chegada:</label>
+            <input type="date" class="form-control" id="arrival_date" formControlName="arrival_date">
+            <div *ngIf="registerForm.get('arrival_date')?.invalid && (registerForm.get('arrival_date')?.dirty || registerForm.get('arrival_date')?.touched)" class="text-danger">
+              Data de chegada é obrigatória.
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="time">Hora de chegada:</label>
+            <input type="time" class="form-control" id="time" formControlName="time">
+            <div *ngIf="registerForm.get('time')?.invalid && (registerForm.get('time')?.dirty || registerForm.get('time')?.touched)" class="text-danger">
+              Hora é obrigatória.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label for="state">Estado:</label>
+            <select class="form-control" id="state" formControlName="state" (change)="onStateChange($event)">
               <option value="">Selecione um estado</option>
-              <option *ngFor="let estado of states" [value]="estado.id">{{ estado.nome }}</option>
+              <option value="foreign">Estrangeiro</option>
+              <option *ngFor="let state of states" [value]="state.id">{{ state.nome }}</option>
             </select>
             <div class="move-checkbox">
-            <input type="checkbox" class="form-check-input" id="foreignCountryCheck" formControlName="foreignCountry">
+              <input type="checkbox" class="form-check-input" id="foreignCountryCheck" formControlName="foreignCountry">
               <label class="form-check-label" for="foreignCountryCheck">País estrangeiro</label>
             </div>
           </div>
-          
-          <div class="col-md-6">
-            <label for="cidade">Cidade:</label>
-            <select class="form-control" id="cidade" formControlName="city">
+          <div class="col-md-6" [ngClass]="{'d-none': registerForm.get('state')?.value === 'foreign'}">
+            <label for="city">Cidade:</label>
+            <select class="form-control" id="city" formControlName="city">
               <option value="">Selecione uma cidade</option>
-              <option *ngFor="let cidade of cidades" [value]="cidade.id">{{ cidade.nome }}</option>
+              <option *ngFor="let city of cidades" [value]="city.id">{{ city.nome }}</option>
             </select>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-md-6">
-            <label for="telefone">Telefone para contato:</label>
-            <input type="text" class="form-control" id="telefone" formControlName="phone" placeholder="Digite seu telefone">
-            <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="noPhoneCheck">
-              <label class="form-check-label" for="noPhoneCheck">Não tenho telefone</label>
+            <div *ngIf="registerForm.get('city')?.invalid && (registerForm.get('city')?.dirty || registerForm.get('city')?.touched)" class="text-danger">
+              Cidade é obrigatória.
             </div>
           </div>
-          <div class="col-md-6">
-            <label for="observacoes">Motivo da hospedagem:</label>
-            <textarea class="form-control" id="observacoes" formControlName="observation" rows="1" placeholder="Digite suas observações"></textarea>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-12">
+            <label for="phone">Telefone:</label>
+            <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Digite seu telefone" mask="(00) 00000-0000" [disabled]="registerForm.get('noPhone')?.value">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input no-phone-checkbox" id="noPhone" formControlName="noPhone">
+              <label class="form-check-label" for="noPhone">Não tenho telefone</label>
+            </div>
           </div>
         </div>
+
+        <div class="form-group row">
+          <div class="col-md-12">
+            <label for="observation">Motivo da Reserva:</label>
+            <textarea class="form-control" id="observation" formControlName="observation" rows="4" placeholder="Motivo da estadia em poucas palavras"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-12">
+            <label for="photo">Foto:</label>
+            <input type="file" class="form-control-file" id="photo" (change)="onFileChange($event)">
+            <div *ngIf="invalidFile" class="text-danger">
+              Arquivo inválido. Apenas arquivos .jpg, .jpeg e .png são aceitos.
+            </div>
+          </div>
+        </div>
+
         <div class="form-group row">
           <div class="col-md-12">
             <button type="submit" class="btn btn-custom">Agendar</button>
           </div>
         </div>
+
+        <!-- Exibe a mensagem de erro abaixo do botão -->
+        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+          {{ errorMessage }}
+        </div>
       </form>
     </div>
   </div>
-</body>
 
+  <!-- Modal de Sucesso -->
+  <ng-template #content let-modal>
+    <div class="modal-content" style="background-color: #d4edda;">
+      <div class="modal-header">
+        <h5 class="modal-title">Sucesso!</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Agendamento realizado com sucesso.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.dismiss('Close click')">Fechar</button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Modal de Regras -->
+  <ng-template #rulesContent let-modal>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Regras do Albergue</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Regras importantes:</p>
+        <ul>
+          <li>É proibida a entrada com armas de fogo, facas, objetos cortantes, bebidas alcoólicas ou substâncias ilícitas.</li>
+          <li>Solicita-se que chegue com 30 minutos de antecedência em relação ao horário agendado para facilitar o processo de acomodação.</li>
+          <li>Não é permitida a entrada após o horário limite de chegada, salvo situações previamente justificadas e aprovadas pela administração.</li>
+          <li>Mantenha os espaços limpos e organizados, respeitando as áreas comuns e os pertences de outros acolhidos.</li>
+          <li>Uso de drogas ou práticas ilícitas resultarão em expulsão imediata.</li>
+          <li>Respeite as orientações da equipe e siga as normas internas para convivência saudável.</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Entendi</button>
+      </div>
+    </div>
+  </ng-template>
+</body>

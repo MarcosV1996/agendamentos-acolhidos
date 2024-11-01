@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens; // Se estiver usando Laravel Sanctum para autenticação API
+use Laravel\Sanctum\HasApiTokens;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -20,7 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'password',
-         'role',
+        'role',
     ];
 
     /**
@@ -34,15 +34,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * Os atributos que devem ser convertidos para tipos nativos.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime', // Remova se não usar email
-    ];
-
-    /**
      * Define o identificador de autenticação para usar 'username' em vez de 'email'.
      *
      * @return string
@@ -53,13 +44,22 @@ class User extends Authenticatable
     }
 
     /**
-     * Define como a senha deve ser criptografada.
+     * Retorna o identificador do JWT.
      *
-     * @param string $password
-     * @return void
+     * @return mixed
      */
-    public function setPasswordAttribute($password)
+    public function getJWTIdentifier()
     {
-        $this->attributes['password'] = bcrypt($password);
+        return $this->getKey();
+    }
+
+    /**
+     * Retorna um array de atributos personalizados do JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

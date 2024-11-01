@@ -1,0 +1,275 @@
+body {
+    padding-top: 80px;
+    background: linear-gradient(to right, #f9f9f9, #e0f7fa);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.container {
+    margin-top: 20px;
+    padding: 0 20px;
+    max-width: 1200px; /* Define a largura máxima do container */
+    margin-left: auto;
+    margin-right: auto;
+}
+.info-row {
+    display: flex; /* Usar flexbox para alinhar itens */
+    align-items: flex-start; /* Alinha os itens ao topo */
+    margin: 10px 0; /* Margem entre linhas */
+}
+
+.observation-text {
+    margin-left: 10px; /* Espaçamento entre o rótulo e o texto */
+    
+    max-width: 70%; /* Garante que não ultrapasse a largura do contêiner */
+    word-wrap: break-word; /* Quebra palavras longas */
+    overflow-wrap: break-word; /* Quebra texto longo */
+    white-space: pre-wrap; /* Mantém quebras de linha no texto */
+    flex: 1; /* Permite que o texto ocupe o espaço restante */
+}
+
+.header {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #0277bd;
+}
+
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.filter-label {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+.filter-select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.filter-select:focus {
+    border-color: #81d4fa;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 10px;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 12px;
+    padding-right: 40px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.search-container input:focus {
+    border-color: #81d4fa;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #81d4fa;
+    cursor: pointer;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite a quebra de linha para criar 2 cards por linha */
+    gap: 20px; /* Espaçamento entre os cards */
+    justify-content: space-evenly; /* Espaça os cards de forma uniforme */
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 30px); /* Cada card ocupa 50% da largura da linha com margem */
+    padding: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    min-width: 400px; /* Define uma largura mínima */
+    box-sizing: border-box;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-body p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.photo {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.card-body i {
+    margin-right: 8px;
+    color: #81d4fa;
+    font-size: 1.2em;
+}
+
+@media (max-width: 1200px) {
+    .card {
+        width: calc(50% - 20px); /* Ajusta para telas menores mantendo 2 cards por linha */
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: calc(100% - 20px); /* Cada card ocupa 100% da linha em telas pequenas */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%; /* Para dispositivos muito pequenos, ocupa a linha toda */
+    }
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.info-row i {
+    margin-right: 8px;
+}
+.action-buttons {
+    margin-top: 10px;
+  }
+  
+  .edit-button, .delete-button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit-button {
+    background-color: #4CAF50; /* Verde para editar */
+    color: white;
+  }
+  
+  .delete-button {
+    background-color: #f44336; /* Vermelho para excluir */
+    color: white;
+  }
+  .action-buttons {
+    margin-top: 10px;
+  }
+  
+  .edit-button, .delete-button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s; /* Adiciona uma transição suave ao transform */
+  }
+  
+  .edit-button {
+    background-color: #4CAF50; /* Verde para editar */
+    color: white;
+  }
+  
+  .delete-button {
+    background-color: #f44336; /* Vermelho para excluir */
+    color: white;
+  }
+  
+  /* Efeito de hover */
+  .edit-button:hover, .delete-button:hover {
+    transform: scale(1.1); /* Aumenta o botão em 10% quando o mouse está sobre ele */
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .photo-container {
+    margin-left: auto;
+  }
+  
+  .appointment-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .read-more-button {
+    width: auto;
+    text-align: center;
+    font-size: 14px;
+    color: #007bff;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  
+  .read-more-button:hover {
+    text-decoration: underline;
+  }
+  
+  .additional-info {
+    margin-top: 15px;
+  }
+  
+  .info-row {
+    margin-bottom: 8px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+
+  
+  .btn:hover, .btn:focus {
+    background: #09928b !important; /* Forçando azul escuro ao passar o mouse */
+    -webkit-background-clip: none !important;
+    -webkit-text-fill-color: #ffffff !important; /* Cor do texto branca */
+    border: none !important; /* Removendo a borda branca */
+    box-shadow: none !important; /* Removendo a sombra */
+    text-decoration: none !important; /* Sem sublinhado */
+  }

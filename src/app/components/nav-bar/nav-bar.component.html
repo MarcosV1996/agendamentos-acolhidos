@@ -29,60 +29,80 @@
           <a class="nav-link"
             routerLink="/home"
             routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            >Página inicial</a>
+            ariaCurrentWhenActive="page">Pagina inicial</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/appointments" routerLinkActive="active" ariaCurrentWhenActive="page">Agendamentos</a>
+
+        <li class="nav-item" *ngIf="isLoggedIn()">
+          <a class="nav-link"
+            routerLink="/appointments"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page">Agendamentos</a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item" *ngIf="!isLoggedIn()">
+          <a class="nav-link"
+            routerLink="/appointments"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page">Agendamentos</a>
+        </li>
+
+        <li class="nav-item" *ngIf="!isLoggedIn()">
           <a class="nav-link"
             routerLink="/contacts"
             routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            >Contatos</a>
+            ariaCurrentWhenActive="page">Contatos</a>
         </li>
-        <li class="nav-item">
+       
+        <li class="nav-item" *ngIf="!isLoggedIn()">
           <a class="nav-link"
             routerLink="/jobs"
             routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            >Trabalhe conosco</a>
+            ariaCurrentWhenActive="page">Trabalhe conosco</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!isLoggedIn()">
           <a class="nav-link"
             routerLink="/about"
             routerLinkActive="active"
-            ariaCurrentWhenActive="page"
-            >Sobre</a>
+            ariaCurrentWhenActive="page">Sobre</a>
         </li>
+
+        <li class="nav-item" *ngIf="isAdmin()">
+          <a class="nav-link"
+            routerLink="/appointments-list"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page">Lista de Agendamentos</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin()">
+          <a class="nav-link"
+             routerLink="/user-registration"
+             routerLinkActive="active"
+             ariaCurrentWhenActive="page">Registrar Funcionarios</a>
+        </li>
+        
+      
       </ul>
     </div>
-    <div class="dropdown">
+
+    <!-- Dropdown de usuário se estiver logado -->
+    <div class="dropdown" *ngIf="isLoggedIn(); else notLoggedIn">
       <button class="dropdown-toggle user-dropdown" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-user" ></i> 
+        <i class="fas fa-user"></i> 
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-        <button class="dropdown-item" type="button" (click)="navigateToLogin()">Entrar</button>
-        <button class="dropdown-item" type="button">Sair</button>
+        <button class="dropdown-item" type="button" (click)="logout()">Sair</button>
       </div>
     </div>
+
+    <!-- Se não estiver logado, exibe o botão de login -->
+    <ng-template #notLoggedIn>
+      <div class="dropdown">
+        <button class="dropdown-toggle user-dropdown" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i> 
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <button class="dropdown-item" type="button" (click)="navigateToLogin()">Entrar</button>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </nav>
-
-<style>
-  .user-dropdown {
-    background-color: transparent;
-    border: none;
-  }
-
-  .user-dropdown:hover, .user-dropdown:focus {
-    background-color: transparent;
-    box-shadow: none;
-  }
-
-  .user-dropdown .fas {
-    background-color: transparent;
-    color: white;
-  }
-</style>
